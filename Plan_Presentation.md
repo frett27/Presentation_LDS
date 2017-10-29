@@ -1,6 +1,8 @@
 # Proposition de plan pour la présentation
 
+## Introduction
 
+​	Pourquoi présenter OSM à Lyon Data science ?
 
 ## OSM - Présentation du projet (Sylvain)
 
@@ -33,12 +35,20 @@
 
 
 
-# Projet - Proposition
+# Projets - DataScience - OSM
 
-Les Hydrants - OSMHydrant
+Projets existants
 
-Etat de saisie / couverture
+​	DeepOSM : https://github.com/trailbehind/DeepOSM
 
-Définition du projet - DataScience
+​	OpenSolarMap : https://wiki.openstreetmap.org/wiki/OpenSolarMap
 
-Proposition de ML - Aide à la prédiction de présence
+Proposition de projets
+
+​	Les Hydrants - OSMHydrant
+
+​	Etat de saisie / couverture
+
+​	Définition du projet - DataScience
+
+​	Proposition de ML - Aide à la prédiction de présence
