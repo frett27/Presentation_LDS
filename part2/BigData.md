@@ -230,6 +230,8 @@ Utilisation Web essentiellement - https://tools.ietf.org/html/rfc7946
 
 Chez ESRI -> FeatureSet
 
+GUI : [http://geojson.io](http://geojson.io)
+
 ---
 
 # Shape - ESRI
@@ -255,7 +257,7 @@ Equivalent au WKB, plus ancien, utilisé dans le format "ShapeFile" .shp - très
 
 # Exemple manipulation geometries (1/3)
 
-python - OGR
+Python - OGR
 ```
 
 from osgeo import ogr
@@ -324,7 +326,7 @@ System.out.println(GeometryEngine.geometryToGeoJson(g));
 
 Retrouver rapidement des informations par "proximité" spatiale. 
 
-L'analyse des geometries est couteuse, il faut analyser tous les points.
+L'analyse des geometries est couteuse (CPU), il faut analyser tous les points.
 
 @@ Filtre primaire / secondaire
 
@@ -332,11 +334,12 @@ F1 : Utilisation des BBox (Bouding Box) -> 4 tests flottants
 F2 : Utilisation de la geometrie
 
 ---
-# Formes d'indexs
+# Formes d'indexes
 
 - Grid
 - GeoHash
 - QuadTree - RTree
+- TwinIndices - Format3
 - ...
 
 plus d'infos
@@ -345,7 +348,7 @@ plus d'infos
 
 ---
 
-# Focus on GeoHash
+# Focus on GeoHash - Beginners
 
 ![](images/geohash.jpg)
 
@@ -378,9 +381,13 @@ decode("wdpy1r3fv6c9")
 
 # En environnement BigData
 
-- Temps de parsing - effort
-- Taille des éléments stockés
-- Volumes / Indexation
+Big Data -> Parallelisme des traitements, "Bring Program on Datas", Stream the datas
+
+Critères importants :
+
+- Temps de parsing - CPU
+- Taille des éléments stockés - I/O performance
+- Volumes / Indexation - F1/F2
 
 ---
 
@@ -397,7 +404,6 @@ decode("wdpy1r3fv6c9")
 # Ouvertures
 
 Librairies / Solutions Geospatiales (BigData)
-
 
 [Magellan](https://github.com/harsha2010/magellan) - HortonWorks
 [Geomesa](http://www.geomesa.org/) - Location Tech
