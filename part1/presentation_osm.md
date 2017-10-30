@@ -1,6 +1,7 @@
+
 <!-- page_number: true -->
 
-# OSM - Présentation du projet (Sylvain)
+# OSM
 
 <image src="images/logo_osmfr.png"></image>
 <a href="https://www.openstreetmap.fr">OpenStreetMap.fr</a>
@@ -104,7 +105,7 @@ Mais :
 ---
 # État des données (à mettre à jour)
 
-Plus de 2,6 milliards de nœuds
+Plus de 4 milliards de nœuds
 Plus de 20 millions de groupes de modifications
 
 En France environ 200-250 contributeurs actifs chaque jours

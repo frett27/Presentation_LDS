@@ -1,6 +1,6 @@
 <!-- page_number: true -->
 
-# Plan
+# Manipuler la geographie
 
 - Geometry
 - Operateurs
@@ -28,10 +28,10 @@
 
 # Problématiques associées à la donnée géographique
 
-- Système de coordonnées (WGS 84/ WebMercator)
+- [Système de coordonnées (WGS 84/ WebMercator) - CRS/SRS](http://spatialreference.org/)
 	- Bibliotheques de reprojection
 	- Calcul de distances / Précision de la donnée
-- Computational Geometry / Précision des nombres
+- [Computational Geometry / Précision des nombres](https://en.wikipedia.org/wiki/Computational_geometry)
 	- Implémentation des opérateurs geometriques
 - Taille en octets des geometries
 	- contour de région précis -> 100 ko
@@ -49,9 +49,22 @@
 	- union / différence / intersection
 <p align="center"><image src="images/union.jpg" height="100"></image></p>
 
-- Rasterisation / Buffer / Delaunay / ... 
+---
 
-<p align="center"><image src="images/buffer.jpg" height="150"></image><image src="images/ex_rasterisation.png" height="150"></image>
+# Operateurs Vectoriels (2)
+
+- Buffer / Delaunay / Voronoi ... 
+
+<p align="center"><image src="images/buffer.jpg" height="400"><image src="images/delaunay_voronoi.png"></image></image>
+</p>
+
+---
+
+# Operateurs Raster (3)
+
+- Rasterisation -> Matrices
+
+<p align="center"><image src="images/ex_rasterisation.png" height="400"></image>
 </p>
 
 ---
@@ -174,7 +187,7 @@ ST_Z
 </p>
 
 ---
-# Encodages des Geometries
+# Encodages des Geometries - Stockage
 
 - OGC (WKT / WKB) (Texte ou Binaire)
 - GeoJSON (JSON)
@@ -255,7 +268,7 @@ Equivalent au WKB, plus ancien, utilisé dans le format "ShapeFile" .shp - très
 
 ---
 
-# Exemple manipulation geometries (1/3)
+# Manipulation geometries (1/3)
 
 Python - OGR
 ```
@@ -328,7 +341,9 @@ Retrouver rapidement des informations par "proximité" spatiale.
 
 L'analyse des geometries est couteuse (CPU), il faut analyser tous les points.
 
-@@ Filtre primaire / secondaire
+Filtre primaire / secondaire
+
+<p align="center"><image src="images/F1F2.png" height="300"></image></p>
 
 F1 : Utilisation des BBox (Bouding Box) -> 4 tests flottants
 F2 : Utilisation de la geometrie
@@ -348,7 +363,7 @@ plus d'infos
 
 ---
 
-# Focus on GeoHash - Beginners
+# Focus on GeoHash
 
 ![](images/geohash.jpg)
 
@@ -376,7 +391,6 @@ decode("wdpy1r3fv6c9")
     // res2: (Double, Double) = (12.345000011846423,123.45599988475442)
 ```
 
-
 ---
 
 # En environnement BigData
@@ -385,7 +399,7 @@ Big Data -> Parallelisme des traitements, "Bring Program on Datas", Stream the d
 
 Critères importants :
 
-- Temps de parsing - CPU
+- Temps de parsing - CPU (Encoding)
 - Taille des éléments stockés - I/O performance
 - Volumes / Indexation - F1/F2
 
@@ -395,13 +409,135 @@ Critères importants :
 
 ---
 
-# Utilisation des données OSM
+# Structuration des données OSM
 
-@@@ Exemples
+- Node (1)
+
+```
+<node id="298884269" lat="54.0901746" lon="12.2482632" 
+  user="SvenHRO" uid="46882" visible="true" version="1" 
+  changeset="676636" timestamp="2008-09-21T21:37:45Z"/>
+```
+
+- Way (2)
+
+```
+<way id="26659127" user="Masch" uid="55988" visible="true" 
+	version="5" changeset="4142606" 
+    timestamp="2010-03-16T11:47:08Z">
+  <nd ref="292403538"/>
+  <nd ref="298884289"/>
+  ...
+  <nd ref="261728686"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="name" v="Pastower Straße"/>
+ </way>
+```
 
 ---
 
-# Ouvertures
+- Relation (3)
+
+```
+ <relation id="56688" user="kmvar" uid="56190" visible="true" 
+   version="28" changeset="6947637" 
+   timestamp="2011-01-12T14:23:49Z">
+  <member type="node" ref="294942404" role=""/>
+  ...
+  <member type="node" ref="364933006" role=""/>
+  <member type="way" ref="4579143" role=""/>
+  ...
+  <member type="node" ref="249673494" role=""/>
+  <tag k="name" v="Küstenbus Linie 123"/>
+  <tag k="network" v="VVW"/>
+  <tag k="operator" v="Regionalverkehr Küste"/>
+  <tag k="ref" v="123"/>
+  <tag k="route" v="bus"/>
+  <tag k="type" v="route"/>
+ </relation>
+```
+
+---
+
+# Formats de Téléchargements
+
+ - XML -> format d'origine
+ - [PBF](https://wiki.openstreetmap.org/wiki/PBF_Format) -> protocol buffer - Très compact
+
+<p align="center"><image src="images/download.png" height="500"></image></p>
+
+
+---
+
+
+# Utilisation des données OSM
+
+plusieurs chemins
+
+0 - OpenStreetmap.org -> extract XML (petit ensemble)
+
+1 - Postgis / Postgres
+
+2 - à partir de Fichiers
+
+
+---
+
+# 1 - PostGIS / Postgresql
+
+Outils existants : Osmosis, osm2pgsql, ....
+
+```
+ osm2pgsql -s -U postgres -d nameofdatabase  \
+      /file/path/toosm/fileorpbf/name.osm
+```
+
+ex : Planet import on custom E5-1650 (32GB RAM - 6 cores) / SSD
+```
+Processing: Node(1507455k 301.6k/s) Way(141480k 37.49k/s) Relation(1469760 81.71/s)  parse time: 26760s
+.....
+Osm2pgsql took 40016s overall (11.1 hours)
+
+real    666m56.457s
+user    335m7.557s
+sys     40m0.366s
+```
+
+Geofabrik / Openstreetmap.fr propose des extracts plus petits -> economie de temps
+
+---
+
+# 2 - à partir de fichiers
+
+
+## Etapes de lecture
+
+- Parsing du fichier
+
+- Reconstruction des geometries (Ways, Polygons)
+
+## Librairies :
+
+- [osm-pbf-parser (Javascript)](https://www.npmjs.com/package/osm-pbf-parser)
+- [ruby osm parsing](https://github.com/systemed/ruby_osmpbf)
+- [crosby.binary (JVM)]()
+- [imp osm (python)](https://imposm.org/docs/imposm.parser/latest/)
+
+-> ATTENTION : reconstruction des polylignes / polygones
+
+---
+
+# Autre possibilité - AVRO (Big Data) 
+
+http://avroosm.s3-website-eu-west-1.amazonaws.com/index.html
+
+<p align="center"><image src="images/avroosm.png" height="500"></image></p>
+
+Polylignes et polygones déjà préconstruits
+
+---
+
+# Stack Big Data
 
 Librairies / Solutions Geospatiales (BigData)
 
