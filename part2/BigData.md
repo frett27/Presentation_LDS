@@ -352,7 +352,7 @@ F2 : Utilisation de la geometrie
 # Formes d'indexes
 
 - Grid
-- GeoHash
+- GeoHash - DGGS (OGC)
 - QuadTree - RTree
 - TwinIndices - Format3
 - ...
@@ -470,15 +470,15 @@ Critères importants :
 ---
 
 
-# Utilisation des données OSM
+# Consommation des données OSM
 
 plusieurs chemins
 
 0 - OpenStreetmap.org -> extract XML (petit ensemble)
 
-1 - Postgis / Postgres
+1 - fichiers -> Postgis / Postgres
 
-2 - à partir de Fichiers
+2 - à partir de Fichiers uniquement
 
 
 ---
