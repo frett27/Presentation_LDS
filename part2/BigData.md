@@ -530,6 +530,7 @@ Geofabrik / Openstreetmap.fr propose des extracts plus petits -> economie de tem
 # Autre possibilité - AVRO (Big Data) 
 
 http://avroosm.s3-website-eu-west-1.amazonaws.com/index.html
+http://bit.ly/2gPIw8B
 
 <p align="center"><image src="images/avroosm.png" height="500"></image></p>
 
