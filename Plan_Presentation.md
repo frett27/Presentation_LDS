@@ -7,11 +7,20 @@
 ## OSM - Présentation du projet (Sylvain)
 
 - Qu'est -ce ? - Histoire ?
-  - Contribution
   - License
 - les structures de données - Node - Way - Relations
-- Sémantique, tags, exploration - Overpass
+- Sémantique, tags
+- Contribution:
+  - Sources
+  - Éditeurs (id, josm)
+  - Validation
+- Exploration - Overpass
 - Echo système - TagInfo
+- Exemples d'utilisations
+  - app (osmand, maps.me)
+  - OpenSolarMap
+  - géocoder base SIRENE
+  - Cincinaty cycle map
 
 
 
@@ -19,8 +28,11 @@
 
 - Outil pour récupérer et travailler les données
   - fichier .osm, .pbf, o5m, avro
+  - téléchargements
+  - Outils SIG (QGIS, ArcGIS) 
 - Base de donnée - Outils
   - pgsql
+  - osm2pgsql ?
   - osmosis
   - ...
 
