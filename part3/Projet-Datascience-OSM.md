@@ -13,6 +13,9 @@
 - Projets existants ML
 	- OpenSolar Map
 	- DeepOSM
+	
+- Projets associés ML
+	- Mapillary (vision / détection auto)
 
 
 - Proposition
@@ -53,6 +56,19 @@ Prédiction sur le routes
 
 - Tensor Flow
 
+
+
+---
+
+# Mapillary
+
+Projet basé sur OpenStreetMap, collectant des photos de rues, d'emplacements. 
+
+Utilisation de ML pour détecter et extraire des données
+ - flouter des images (visages, plaques d'immatriculation .. )
+ - extraction de Panneaux de signalisation
+
+@@@ 
 
 ---
 
