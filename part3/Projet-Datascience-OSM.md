@@ -27,7 +27,7 @@
 
 comptage / comparaison de référentiels pour observer les plus ou les moins dans la base de donnée OSM.
 
-@@Image
+
 
 Mettre en évidence les zones blanches
 
@@ -68,7 +68,7 @@ Utilisation de ML pour détecter et extraire des données
  - flouter des images (visages, plaques d'immatriculation .. )
  - extraction de Panneaux de signalisation
 
-@@@ 
+
 
 ---
 
